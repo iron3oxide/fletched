@@ -15,19 +15,19 @@ class RoutedApp:
         self.route_to_viewbuilder: dict[str, ViewBuilder] = {}
         self.state: defaultdict = defaultdict(lambda: "not set")
 
-        self.page.on_route_change = self.append_view
-        self.page.on_view_pop = self.pop_view
+        self.page.on_route_change = self._append_view
+        self.page.on_view_pop = self._pop_view
 
     def add_view_builders(self, view_builder_classes: list[Type[ViewBuilder]]) -> None:
         for view_builder_class in view_builder_classes:
             view_builder = view_builder_class(
                 page=self.page, unauthorized_return_route=self.unauthorized_return_route
             )
-            view_builder.set_app(self)
+            view_builder._set_app(self)
             if view_builder.route:
                 self.route_to_viewbuilder[view_builder.route] = view_builder
 
-    def append_view(self, e: ft.RouteChangeEvent) -> None:
+    def _append_view(self, e: ft.RouteChangeEvent) -> None:
         self.page.views.clear()
         if e.route not in self.route_to_viewbuilder:
             return
@@ -35,7 +35,7 @@ class RoutedApp:
         self.page.views.append(view)
         self.page.update()
 
-    def pop_view(self, e: ft.ViewPopEvent) -> None:
+    def _pop_view(self, e: ft.ViewPopEvent) -> None:
         if len(self.page.views) == 1:
             return
         self.page.views.pop()

@@ -33,7 +33,7 @@ class ViewBuilder(ABC):
     def build_view(self) -> ft.View:
         ...
 
-    def set_app(self, app) -> None:
+    def _set_app(self, app) -> None:
         self.app = app
 
     def _build_unauthorized_view(self) -> ft.View:
