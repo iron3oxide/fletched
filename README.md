@@ -120,8 +120,12 @@ class CounterViewBuilder(MvpViewBuilder):
 
 Somewhere in your project, you will have to import all ViewBuilder classes
 and aggregate them in a list.
-The recommended approach is to this in the `__init__.py`
+The recommended approach is to do this in the `__init__.py`
 of the module that contains all your view modules.
+
+It is also possible to create multiple lists
+of different ViewBuilders in different places in your project
+and to then add these lists to the app one after another.
 
 ### RoutedApp usage
 
