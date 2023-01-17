@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "flet_routed_app"
+version = "0.1.0"
+description = "Tools to build flet apps with multiple views/routes"
+authors = ["iron3oxide <jason.hottelet@tuta.io>"]
+license = "Apache 2.0"
+readme = "README.md"
+packages = [{ include = "flet_routed_app" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flet = "^0.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
