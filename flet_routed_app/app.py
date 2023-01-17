@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import Type
 
 import flet as ft
@@ -12,6 +13,7 @@ class RoutedApp:
         self.page = page
         self.unauthorized_return_route = unauthorized_return_route
         self.route_to_viewbuilder: dict[str, ViewBuilder] = {}
+        self.state: defaultdict = defaultdict(lambda: "not set")
 
         self.page.on_route_change = self.append_view
         self.page.on_view_pop = self.pop_view
@@ -27,6 +29,8 @@ class RoutedApp:
 
     def append_view(self, e: ft.RouteChangeEvent) -> None:
         self.page.views.clear()
+        if e.route not in self.route_to_viewbuilder:
+            return
         view = self.route_to_viewbuilder[e.route].view_func()
         self.page.views.append(view)
         self.page.update()
