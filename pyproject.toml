@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "flet_routed_app"
+name = "flet-routed-app"
 version = "0.1.0"
 description = "Tools to build flet apps with multiple views/routes"
 authors = ["iron3oxide <jason.hottelet@tuta.io>"]
