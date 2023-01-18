@@ -160,6 +160,35 @@ it will return the string Literal "not set".
 Each ViewBuilder will be passed the app instance
 when it is added to that very instance.
 
+If you know exactly which variables you will need to pass at runtime
+and you want to have autocomplete in your editor,
+you can create custom app and state classes in an `app.py` file like this:
+
+```python
+from flet_routed_app import CustomAppState, RoutedApp
+
+
+class AppState(CustomAppState):
+    test: int = 0
+    demo: str = ""
+
+
+class App(RoutedApp):
+    state: AppState = AppState()
+```
+
+Please remember to use those throughout your project when typehinting,
+otherwise you won't reap the autocomplete benefits.
+
+`CustomAppState` is an empty dataclass which saves you the trouble
+of having to import dataclasses and decorate your class
+and ensures better type safety for the library.
+
+You will also need to pass the `custom_state=True` flag
+when creating the app instance,
+so the constructor  of `RoutedApp` knows not to set the `state` class variable
+to an empty defaultdict.
+
 ### Accessing methods of other views' presenter/controller etc
 
 Though this is not encouraged,
