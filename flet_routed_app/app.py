@@ -1,4 +1,5 @@
 from collections import defaultdict
+from dataclasses import dataclass
 from typing import Type
 
 import flet as ft
@@ -6,14 +7,26 @@ import flet as ft
 from flet_routed_app.view_builder import ViewBuilder
 
 
+@dataclass
+class CustomAppState:
+    pass
+
+
 class RoutedApp:
+    state: defaultdict | CustomAppState
+
     def __init__(
-        self, page: ft.Page, unauthorized_return_route: str = "/login"
+        self,
+        page: ft.Page,
+        unauthorized_return_route: str = "/login",
+        custom_state: bool = False,
     ) -> None:
         self.page = page
         self.unauthorized_return_route = unauthorized_return_route
         self.route_to_viewbuilder: dict[str, ViewBuilder] = {}
-        self.state: defaultdict = defaultdict(lambda: "not set")
+
+        if not custom_state:
+            self.state = defaultdict(lambda: "not set")
 
         self.page.on_route_change = self._append_view
         self.page.on_view_pop = self._pop_view
