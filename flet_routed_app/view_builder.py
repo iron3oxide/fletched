@@ -13,7 +13,6 @@ class ViewBuilder(ABC):
     ) -> None:
 
         self.page: ft.Page = page
-        self.app = None
         self.unauthorized_return_route = unauthorized_return_route
         if route:
             self.route: str | None = route
@@ -22,6 +21,7 @@ class ViewBuilder(ABC):
     @property
     def view_func(self) -> Callable[..., ft.View]:
         if self.auth_func and not self.auth_func():
+            self.app.last_unauthorized_route = self.route
             return self._build_unauthorized_view
         return self.__view_func
 

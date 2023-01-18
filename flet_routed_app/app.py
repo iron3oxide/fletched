@@ -22,7 +22,8 @@ class RoutedApp:
         custom_state: bool = False,
     ) -> None:
         self.page = page
-        self.unauthorized_return_route = unauthorized_return_route
+        self.unauthorized_return_route: str = unauthorized_return_route
+        self.last_unauthorized_route: str | None = None
         self.route_to_viewbuilder: dict[str, ViewBuilder] = {}
 
         if not custom_state:
