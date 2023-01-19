@@ -3,6 +3,8 @@ from typing import Callable, Type
 
 import flet as ft
 
+from flet_routed_app.app_protocol import RoutedAppProtocol
+
 
 class ViewBuilder(ABC):
     route: str | None = None
@@ -34,7 +36,7 @@ class ViewBuilder(ABC):
         ...
 
     def _set_app(self, app) -> None:
-        self.app = app
+        self.app: RoutedAppProtocol = app
 
     def _build_unauthorized_view(self) -> ft.View:
         return ft.View(

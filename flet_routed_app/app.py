@@ -1,15 +1,10 @@
 from collections import defaultdict
-from dataclasses import dataclass
 from typing import Type
 
 import flet as ft
 
+from flet_routed_app.state import CustomAppState
 from flet_routed_app.view_builder import ViewBuilder
-
-
-@dataclass
-class CustomAppState:
-    pass
 
 
 class RoutedApp:
