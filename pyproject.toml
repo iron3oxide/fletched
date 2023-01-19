@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flet-routed-app"
-version = "0.2.0"
+version = "0.2.1"
 description = "Tools to build flet apps with multiple views/routes"
 authors = ["iron3oxide <jason.hottelet@tuta.io>"]
 license = "Apache-2.0"
@@ -9,7 +9,7 @@ packages = [{ include = "flet_routed_app" }]
 repository = "https://github.com/iron3oxide/flet-routed-app"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 flet = "^0.3.2"
 
 
