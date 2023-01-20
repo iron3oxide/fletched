@@ -1,4 +1,4 @@
-name: Python package
+name: Publish
 on:
   push:
     tags:
@@ -7,7 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Create Github release
+        uses: softprops/action-gh-release@v1
       - name: Build and publish to pypi
         uses: JRubics/poetry-publish@v1.16
         with:
