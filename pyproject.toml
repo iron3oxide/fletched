@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flet-routed-app"
-version = "0.2.2"
+version = "0.3.0"
 description = "Tools to build flet apps with multiple views/routes"
 authors = ["iron3oxide <jason.hottelet@tuta.io>"]
 license = "Apache-2.0"
