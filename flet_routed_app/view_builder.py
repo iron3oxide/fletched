@@ -32,7 +32,7 @@ class ViewBuilder(ABC):
         self.__view_func = func
 
     @abstractmethod
-    def build_view(self) -> ft.View:
+    def build_view(self, route_parameter: str | int | None) -> ft.View:
         ...
 
     def _set_app(self, app) -> None:
@@ -56,11 +56,14 @@ class MvpViewBuilder(ViewBuilder):
     view_class: Type
     presenter_class: Type
 
-    def build_view(self) -> ft.View:
+    def build_view(self, route_parameter: str | int | None) -> ft.View:
         self.model = self.model_class()
         self.view: ft.View = self.view_class(self.route)
         self.presenter = self.presenter_class(
-            model=self.model, view=self.view, app=self.app
+            model=self.model,
+            view=self.view,
+            app=self.app,
+            route_parameter=route_parameter,
         )
         self.presenter.build()
 

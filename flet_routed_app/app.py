@@ -3,6 +3,7 @@ from typing import Type
 
 import flet as ft
 
+from flet_routed_app.page_not_found import PageNotFoundView
 from flet_routed_app.state import CustomAppState
 from flet_routed_app.view_builder import ViewBuilder
 
@@ -38,9 +39,7 @@ class RoutedApp:
 
     def _append_view(self, e: ft.RouteChangeEvent) -> None:
         self.page.views.clear()
-        if e.route not in self.route_to_viewbuilder:
-            return
-        view = self.route_to_viewbuilder[e.route].view_func()
+        view = self._get_view(e.route)
         self.page.views.append(view)
         self.page.update()
 
@@ -50,3 +49,12 @@ class RoutedApp:
         self.page.views.pop()
         top_view = self.page.views[-1]
         self.page.go(top_view.route)
+
+    def _get_view(self, route: str) -> ft.View:
+        template = ft.TemplateRoute(route)
+        for route, view_builder in self.route_to_viewbuilder.items():
+            if template.match(route):
+                parameter = route.partition(":")[2]
+                parameter_value = getattr(template, parameter, None)
+                return view_builder.view_func(parameter_value)
+        return PageNotFoundView()
