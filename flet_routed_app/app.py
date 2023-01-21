@@ -2,6 +2,7 @@ from collections import defaultdict
 from typing import Type
 
 import flet as ft
+import repath
 
 from flet_routed_app.page_not_found import PageNotFoundView
 from flet_routed_app.state import CustomAppState
@@ -52,9 +53,15 @@ class RoutedApp:
 
     def _get_view(self, route: str) -> ft.View:
         template = ft.TemplateRoute(route)
-        for route, view_builder in self.route_to_viewbuilder.items():
-            if template.match(route):
-                parameter = route.partition(":")[2]
-                parameter_value = getattr(template, parameter, None)
-                return view_builder.view_func(parameter_value)
+        for route_template, view_builder in self.route_to_viewbuilder.items():
+            if template.match(route_template):
+                tokens = repath.parse(route_template)
+                parameter_names = [
+                    token["name"] for token in tokens if isinstance(token, dict)
+                ]
+                parameters = {
+                    parameter_name: getattr(template, parameter_name, "")
+                    for parameter_name in parameter_names
+                }
+                return view_builder.view_func(parameters)
         return PageNotFoundView()
