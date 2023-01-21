@@ -52,7 +52,7 @@ This class should inherit from the `ViewBuilder` class of this library
 and at minimum define a method with the signature
 
 ```python
-def build_view(self, route_parameters: dict[str, Any]) -> flet.View
+def build_view(self, route_parameters: dict[str, str]) -> flet.View
 ```
 
 This library also contains convenience ViewBuilder subclasses

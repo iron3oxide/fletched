@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, Callable, Type
+from typing import Callable, Type
 
 import flet as ft
 
@@ -32,7 +32,7 @@ class ViewBuilder(ABC):
         self.__view_func = func
 
     @abstractmethod
-    def build_view(self, route_parameters: dict[str, Any]) -> ft.View:
+    def build_view(self, route_parameters: dict[str, str]) -> ft.View:
         ...
 
     def _set_app(self, app) -> None:
@@ -56,7 +56,7 @@ class MvpViewBuilder(ViewBuilder):
     view_class: Type
     presenter_class: Type
 
-    def build_view(self, route_parameters: dict[str, Any]) -> ft.View:
+    def build_view(self, route_parameters: dict[str, str]) -> ft.View:
         self.model = self.model_class()
         self.view: ft.View = self.view_class(self.route)
         self.presenter = self.presenter_class(
