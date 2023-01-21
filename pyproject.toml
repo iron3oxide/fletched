@@ -11,6 +11,7 @@ repository = "https://github.com/iron3oxide/flet-routed-app"
 [tool.poetry.dependencies]
 python = "^3.10"
 flet = "^0.3.2"
+repath = "^0.9.0"
 
 
 [build-system]
