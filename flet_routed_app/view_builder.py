@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Callable, Type
+from typing import Any, Callable, Type
 
 import flet as ft
-
-from flet_routed_app.app_protocol import RoutedAppProtocol
 
 
 class ViewBuilder(ABC):
@@ -36,7 +34,7 @@ class ViewBuilder(ABC):
         ...
 
     def _set_app(self, app) -> None:
-        self.app: RoutedAppProtocol = app
+        self.app: Any = app
 
     def _build_unauthorized_view(self) -> ft.View:
         return ft.View(
