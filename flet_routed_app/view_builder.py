@@ -50,18 +50,18 @@ class ViewBuilder(ABC):
 
 
 class MvpViewBuilder(ViewBuilder):
-    model_class: Type
+    data_source_class: Type
     view_class: Type
     presenter_class: Type
 
     def build_view(self, route_parameters: dict[str, str]) -> ft.View:
-        self.model = self.model_class()
+        self.data_source = self.data_source_class(
+            app=self.app, route_parameters=route_parameters
+        )
         self.view: ft.View = self.view_class(self.route)
         self.presenter = self.presenter_class(
-            model=self.model,
+            data_source=self.data_source,
             view=self.view,
-            app=self.app,
-            route_parameters=route_parameters,
         )
         self.presenter.build()
 
