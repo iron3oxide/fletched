@@ -116,6 +116,11 @@ class CounterViewBuilder(MvpViewBuilder):
     view_class = CounterView
 ```
 
+You can also easily write your own auth decorator,
+all it has to do is define a function that returns a bool
+and set the `auth_func` attribute
+of the ViewBuilder class it wraps to that function.
+
 ### Aggregating ViewBuilder classes
 
 Somewhere in your project, you will have to import all ViewBuilder classes
