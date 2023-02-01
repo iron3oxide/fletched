@@ -66,7 +66,7 @@ from my_package.views.counter import CounterModel, CounterPresenter, CounterView
 
 
 class CounterViewBuilder(MvpViewBuilder):
-    model_class = CounterModel
+    data_source_class = CounterModel
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -81,7 +81,7 @@ from my_package.views.counter import CounterModel, CounterPresenter, CounterView
 
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    model_class = CounterModel
+    data_source_class = CounterModel
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -97,7 +97,7 @@ from my_package.views.counter import CounterModel, CounterPresenter, CounterView
 @login_required
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    model_class = CounterModel
+    data_source_class = CounterModel
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -111,7 +111,7 @@ from my_package.views.counter import CounterModel, CounterPresenter, CounterView
 @group_required("demo")
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    model_class = CounterModel
+    data_source_class = CounterModel
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
