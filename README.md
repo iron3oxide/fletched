@@ -62,11 +62,11 @@ The MvpViewBuilder for example only requires you to define three class variables
 ```python
 from flet_routed_app import MvpViewBuilder
 
-from my_package.views.counter import CounterModel, CounterPresenter, CounterView
+from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
 
 class CounterViewBuilder(MvpViewBuilder):
-    data_source_class = CounterModel
+    data_source_class = CounterDataSource
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -76,12 +76,11 @@ class CounterViewBuilder(MvpViewBuilder):
 ```python
 from flet_routed_app import MvpViewBuilder, route
 
-from my_package.views.counter import CounterModel, CounterPresenter, CounterView
-
+from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    data_source_class = CounterModel
+    data_source_class = CounterDataSource
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -91,13 +90,12 @@ class CounterViewBuilder(MvpViewBuilder):
 ```python
 from flet_routed_app import MvpViewBuilder, login_required, route
 
-from my_package.views.counter import CounterModel, CounterPresenter, CounterView
-
+from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
 @login_required
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    data_source_class = CounterModel
+    data_source_class = CounterDataSource
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
@@ -105,13 +103,12 @@ class CounterViewBuilder(MvpViewBuilder):
 ```python
 from flet_routed_app import MvpViewBuilder, group_required, route
 
-from my_package.views.counter import CounterModel, CounterPresenter, CounterView
-
+from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
 @group_required("demo")
 @route("/counter")
 class CounterViewBuilder(MvpViewBuilder):
-    data_source_class = CounterModel
+    data_source_class = CounterDataSource
     presenter_class = CounterPresenter
     view_class = CounterView
 ```
