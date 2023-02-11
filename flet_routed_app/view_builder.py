@@ -54,9 +54,9 @@ class MvpViewBuilder(ViewBuilder):
     view_class: Type
     presenter_class: Type
 
-    def build_view(self, route_parameters: dict[str, str]) -> ft.View:
+    def build_view(self, route_params: dict[str, str]) -> ft.View:
         self.data_source = self.data_source_class(
-            app=self.app, route_parameters=route_parameters
+            app=self.app, route_params=route_params
         )
         self.view: ft.View = self.view_class(self.route)
         self.presenter = self.presenter_class(
