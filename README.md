@@ -9,7 +9,6 @@
     - [Aggregating ViewBuilder classes](#aggregating-viewbuilder-classes)
     - [RoutedApp usage](#routedapp-usage)
     - [App state](#app-state)
-    - [Accessing methods of other views' presenter/controller etc](#accessing-methods-of-other-views-presentercontroller-etc)
 
 ## When will I need this?
 
@@ -190,29 +189,3 @@ You will also need to pass the `custom_state=True` flag
 when creating the app instance,
 so the constructor  of `RoutedApp` knows not to set the `state` class variable
 to an empty defaultdict.
-
-### Accessing methods of other views' presenter/controller etc
-
-Though this is not encouraged,
-some ViewBuilders (e.g. the MvpViewBuilder)
-enable you to access their components
-once the corresponding view has been built.
-This is possible by getting the respective ViewBuilder object
-from within another module using the `app.route_to_view` dictionary
-which translates route strings to ViewBuilder objects.
-Your typechecker will rightfully complain though
-as it does only know that the value is a ViewBuilder,
-which doesn't necessarily have a `presenter` attribute for example.
-
-```python
-class CounterPresenter:
-    def __init__(
-        self, *, model: CounterModel, view: CounterViewProtocol, app: RoutedApp
-    ) -> None:
-        self.model = model
-        self.view = view
-        self.app = app
-        self.page = self.app.page
-
-        self.app.route_to_viewbuilder["/login"].presenter.access_from_app_demo()
-```
