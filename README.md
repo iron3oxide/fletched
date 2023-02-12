@@ -40,6 +40,13 @@ or raise an exception if the user is not authorized to access it.
 This can create a lot of boilerplate code
 if you don't have the help of a library.
 
+Another library that might interest you
+if you are designing an app of that scale is
+[flet-mvp-utils](https://github.com/iron3oxide/flet-mvp-utils).
+It is designed to work well with flet-routed-app
+(e.g. the conveniently included MvpViewBuilder assumes usage of flet-mvp-utils),
+but neither of them requires usage of the other.
+
 ## How do I use this?
 
 ### ViewBuilder class
