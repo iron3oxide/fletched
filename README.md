@@ -1,5 +1,7 @@
 # fletched
 
+An opinionated framework on top of flet.
+
 - [fletched](#fletched)
   - [routed-app](#routed-app)
     - [When will I need this?](#when-will-i-need-this)
@@ -77,7 +79,7 @@ that provide a shortcut for common architecture design patterns.
 The MvpViewBuilder for example only requires you to define three class variables:
 
 ```python
-from flet_routed_app import MvpViewBuilder
+from fletched.mvp import MvpViewBuilder
 
 from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
@@ -91,7 +93,8 @@ class CounterViewBuilder(MvpViewBuilder):
 #### Route assignment
 
 ```python
-from flet_routed_app import MvpViewBuilder, route
+from fletched.routed_app import route
+from fletched.mvp import MvpViewBuilder
 
 from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
@@ -105,7 +108,8 @@ class CounterViewBuilder(MvpViewBuilder):
 #### Route protection
 
 ```python
-from flet_routed_app import MvpViewBuilder, login_required, route
+from fletched.routed_app import login_required, route
+from fletched.mvp import MvpViewBuilder
 
 from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
@@ -118,7 +122,8 @@ class CounterViewBuilder(MvpViewBuilder):
 ```
 
 ```python
-from flet_routed_app import MvpViewBuilder, group_required, route
+from fletched.routed_app import group_required, route
+from fletched.mvp import MvpViewBuilder
 
 from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
 
@@ -155,7 +160,7 @@ and add the previously imported list of ViewBuilder classes to the instance.
 ```python
 import flet as ft
 
-from flet_routed_app import RoutedApp
+from fletched.routed_app import RoutedApp
 
 from mypackage import views
 
@@ -184,7 +189,7 @@ and you want to have autocomplete in your editor,
 you can create custom app and state classes in an `app.py` file like this:
 
 ```python
-from flet_routed_app import CustomAppState, RoutedApp
+from fletched.routed_app import CustomAppState, RoutedApp
 
 
 class AppState(CustomAppState):
@@ -292,10 +297,15 @@ Any variable intended for the `flet.View` constructor will be accepted
 and passed on by the default `__init__()` method,
 so you don't need to define your own in most cases.
 
+You will also need to define a `config` class variable,
+where you define things such as horizontal alignment,
+appbar and other parameters for the parent `flet.View`.
+The `ViewConfig` dataclass is included for this purpose.
+
 ```python
 import flet as ft
 
-from flet_mvp_utils import MvpView
+from fletched.mvp import MvpView, ViewConfig
 
 
 class FormView(MvpView):
@@ -304,6 +314,10 @@ class FormView(MvpView):
             "first_name": ft.Ref[ft.TextField](),
             "age": ft.Ref[ft.TextField](),
         }
+    config = ViewConfig(
+        vertical_alignment=ft.MainAxisAlignment.CENTER,
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    )
 
     def some_intent_method(self, e) -> None:
         ...
@@ -333,7 +347,7 @@ that renders the new model in the given view in its `__post_init__()` hook.
 
 ```python
 from dataclasses import dataclass
-from flet_mvp_utils import MvpPresenter
+from fletched.mvp import MvpPresenter
 
 from my_package.views.form import FormDataSource, FormViewProtocol
 
@@ -374,7 +388,7 @@ and call `self.update_model_partial(changes: dict)`
 or `self.update_model_complete(new_model: dict)` depending on your use case.
 
 ```python
-from flet_mvp_utils import MvpDataSource
+from fletched.mvp import MvpDataSource
 
 
 class FormDataSource(MvpDataSource):
@@ -404,7 +418,7 @@ Of course immutability is never enforced 100% in python,
 but this should suffice.
 
 ```python
-from flet_mvp_utils import MvpModel
+from fletched.mvp import MvpModel
 
 
 class FormModel(MvpModel):
@@ -425,7 +439,7 @@ We probably want to inform our user though that they have input invalid data.
 To do this, we'll simply typehint `age` differently.
 
 ```python
-from flet_mvp_utils import ErrorMessage, MvpModel
+from fletched.mvp import ErrorMessage, MvpModel
 
 
 class FormModel(MvpModel):
