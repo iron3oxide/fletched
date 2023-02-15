@@ -4,9 +4,9 @@ from typing import Type
 import flet as ft
 import repath
 
-from flet_routed_app.page_not_found import PageNotFoundView
-from flet_routed_app.state import CustomAppState
-from flet_routed_app.view_builder import ViewBuilder
+from fletched.routed_app.page_not_found import PageNotFoundView
+from fletched.routed_app.state import CustomAppState
+from fletched.routed_app.view_builder import ViewBuilder
 
 
 class RoutedApp:

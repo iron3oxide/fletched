@@ -3,6 +3,8 @@ from typing import Any, Callable, Type
 
 import flet as ft
 
+from fletched.mvp_utils import MvpDataSource, MvpPresenter, MvpView
+
 
 class ViewBuilder(ABC):
     route: str | None = None
@@ -50,15 +52,15 @@ class ViewBuilder(ABC):
 
 
 class MvpViewBuilder(ViewBuilder):
-    data_source_class: Type
-    view_class: Type
-    presenter_class: Type
+    data_source_class: Type[MvpDataSource]
+    view_class: Type[MvpView]
+    presenter_class: Type[MvpPresenter]
 
     def build_view(self, route_params: dict[str, str]) -> ft.View:
         self.data_source = self.data_source_class(
             app=self.app, route_params=route_params
         )
-        self.view: ft.View = self.view_class(self.route)
+        self.view: ft.View = self.view_class(route=self.route)
         self.presenter = self.presenter_class(
             data_source=self.data_source,
             view=self.view,

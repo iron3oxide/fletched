@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "flet-routed-app"
+name = "fletched"
 version = "0.3.4"
 description = "Tools to build flet apps with multiple views/routes"
 authors = ["iron3oxide <jason.hottelet@tuta.io>"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{ include = "flet_routed_app" }]
+packages = [{ include = "fletched" }]
 repository = "https://github.com/iron3oxide/flet-routed-app"
 
 [tool.poetry.dependencies]

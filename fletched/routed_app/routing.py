@@ -1,6 +1,6 @@
 from typing import Callable, Type
 
-from flet_routed_app.view_builder import ViewBuilder
+from fletched.routed_app.view_builder import ViewBuilder
 
 
 def route(route: str) -> Callable[..., Type[ViewBuilder]]:
