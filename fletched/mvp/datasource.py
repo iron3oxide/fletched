@@ -1,9 +1,9 @@
 from abstractcp import Abstract, abstract_class_property
-from fletched.mvp_utils.error import ErrorMessage
-from fletched.mvp_utils.observable import Observable
 from pydantic import BaseModel, ValidationError
 
-from fletched.routed_app.app import RoutedApp
+from fletched.mvp.error import ErrorMessage
+from fletched.mvp.observable import Observable
+from fletched.routed_app import RoutedApp
 
 
 class MvpDataSource(Abstract, Observable):

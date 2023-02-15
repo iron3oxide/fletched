@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from fletched.mvp_utils.datasource import MvpDataSource
-from fletched.mvp_utils.protocols import MvpViewProtocol
+from fletched.mvp.datasource import MvpDataSource
+from fletched.mvp.protocols import MvpViewProtocol
 
 
 @dataclass
