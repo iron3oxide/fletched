@@ -417,10 +417,14 @@ The best example for that would be a user ID.
 We might be able to specify that it must be a number between 1 and 999,
 but we can't ensure this way that the ID actually exists.
 That is why it is up to you to handle the error cases that can happen this way.
+
+In general, you probably want to do this in the `build_view()` method
+since it is easily possible to return a different view from there.
 If you use the `MvpViewBuilder`,
 this is done by overriding the `route_params_valid` property
 of the `MvpDataSource`, which is defined but not implemented by default.
-The ViewBuilder will automatically create a new DataSource
+The `build_view()` method of the ViewBuilder
+will automatically create a new DataSource
 (and thus a new model/view state)
 when the route parameters change
 and return the aforementioned `PageNotFoundView`
