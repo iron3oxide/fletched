@@ -5,6 +5,11 @@
 An opinionated framework on top of flet,
 designed to significantly reduce boilerplate code
 and aid in structuring a non-trivial project.
+
+If flet were an arrow,
+fletched would give it feathers,
+enabling you to aim and hit way further.
+
 For now, it offers two libraries/submodules:
 `mvp` and `routed_app`,
 which were originally separate projects.
@@ -22,7 +27,7 @@ that will work as well.
       - [Aggregating ViewBuilder classes](#aggregating-viewbuilder-classes)
       - [RoutedApp usage](#routedapp-usage)
       - [App state](#app-state)
-  - [mvp-utils](#mvp-utils)
+  - [mvp](#mvp)
     - [Architecture / API](#architecture--api)
     - [Usage](#usage)
       - [View](#view)
@@ -216,7 +221,7 @@ when creating the app instance,
 so the constructor  of `RoutedApp` knows not to set the `state` class variable
 to an empty defaultdict.
 
-## mvp-utils
+## mvp
 
 This library provides tools that make it a bit easier
 to follow architecture patterns in your flet app
