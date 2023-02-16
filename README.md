@@ -368,6 +368,65 @@ class CounterViewBuilder(MvpViewBuilder):
     view_class = CounterView
 ```
 
+You can use template routes too!
+They just have to follow the
+[repath](https://github.com/nickcoutsos/python-repath) spec,
+which both flet and fletched use under the hood.
+
+```python
+from fletched.routed_app import route
+from fletched.mvp import MvpViewBuilder
+
+from my_package.views.counter import CounterDataSource, CounterPresenter, CounterView
+
+@route("/counter/:user/count/:id")
+class CounterViewBuilder(MvpViewBuilder):
+    data_source_class = CounterDataSource
+    presenter_class = CounterPresenter
+    view_class = CounterView
+```
+
+The variables `user` and `id` will automatically be extracted by fletched
+and put into the `route_params` dictionary the `build_view()` method
+of the ViewBuilder accepts as a parameter.
+When no template route is specified or used (parameters can be optional),
+that dictionary is empty.
+Otherwise, it will contain a mapping of variable names to variable values.
+> In the MvpViewBuilder,
+> the route_params mapping will automatically be passed to the DataSource.
+
+In case the route we assigned in the code block above gets called like this:
+`yourappdomain/counter/23/count/4`,
+the route_params dictionary will look like this:
+`{"user"="23", "id"="4"}`.
+Note that both name and value will be strings,
+so you'll have to convert the value
+in case it's supposed to be of a different data type.
+The repath library allows you to specify a lot of constraints
+with the help of regular expressions,
+e.g. that a parameter is supposed to consist of 1-3 digits.
+If the route the user input
+does not match the route template of a given `ViewBuilder`,
+a `RoutedApp` will return a simple `PageNotFoundView`.
+
+Due to the limits of regular expressions,
+you can not always assume that an input route
+that was successfully matched to a route template
+satisfies all the constraints the parameters of that route template should have.
+The best example for that would be a user ID.
+We might be able to specify that it must be a number between 1 and 999,
+but we can't ensure this way that the ID actually exists.
+That is why it is up to you to handle the error cases that can happen this way.
+If you use the `MvpViewBuilder`,
+this is done by overriding the `route_params_valid` property
+of the `MvpDataSource`, which is defined but not implemented by default.
+The ViewBuilder will automatically create a new DataSource
+(and thus a new model/view state)
+when the route parameters change
+and return the aforementioned `PageNotFoundView`
+if the DataSource has a non-empty `route_params` mapping
+and the `route_params_valid` property returns `False`.
+
 #### Route protection
 
 ```python
