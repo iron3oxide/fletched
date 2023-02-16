@@ -1,6 +1,16 @@
+![logo](docs/assets/logo.png)
+
 # fletched
 
-An opinionated framework on top of flet.
+An opinionated framework on top of flet,
+designed to significantly reduce boilerplate code
+and aid in structuring a non-trivial project.
+For now, it offers two libraries/submodules:
+`mvp` and `routed_app`,
+which were originally separate projects.
+They are designed to work well in conjunction,
+but should you only want to use one of them,
+that will work as well.
 
 - [fletched](#fletched)
   - [routed-app](#routed-app)
@@ -52,13 +62,6 @@ You'll also want the function/method to return a different view
 or raise an exception if the user is not authorized to access it.
 This can create a lot of boilerplate code
 if you don't have the help of a library.
-
-Another library that might interest you
-if you are designing an app of that scale is
-[flet-mvp-utils](https://github.com/iron3oxide/flet-mvp-utils).
-It is designed to work well with flet-routed-app
-(e.g. the conveniently included MvpViewBuilder assumes usage of flet-mvp-utils),
-but neither of them requires usage of the other.
 
 ### How do I use this?
 
@@ -269,13 +272,6 @@ while still getting helpful autocomplete in `MyClass` for
 which itself will be autocompleted for you when defining `MyClass`.
 It also makes the approach more declarative rather than imperative,
 which some developers might prefer (or so I've heard).
-
-If you feel you need this library to properly design your flet app,
-it is probably complex enough to need routing
-and maybe even an app state solution as well.
-Lucky for you, [flet-routed-app](https://github.com/iron3oxide/flet-routed-app)
-and flet-mvp-utils are designed to compliment each other
-while none of both strictly requires usage of the other in order to work.
 
 ### Usage
 
