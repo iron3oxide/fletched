@@ -17,6 +17,10 @@ class MvpDataSource(Abstract, Observable):
             self.app = app
             self.page = app.page
 
+    @property
+    def route_params_valid(self) -> bool:
+        ...
+
     def update_model_partial(self, changes: dict) -> bool:
         model_map = self.current_model.dict()
         for k, v in model_map:

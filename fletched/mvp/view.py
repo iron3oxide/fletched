@@ -10,7 +10,7 @@ from fletched.mvp.datasource import MvpDataSource
 from fletched.mvp.error import ErrorMessage
 from fletched.mvp.presenter import MvpPresenter
 from fletched.mvp.protocols import MvpPresenterProtocol
-from fletched.routed_app import ViewBuilder
+from fletched.routed_app import PageNotFoundView, ViewBuilder
 
 
 @dataclass
@@ -67,17 +67,23 @@ class MvpView(Abstract, ft.View):
         ...
 
 
-class MvpViewBuilder(ViewBuilder):
-    data_source_class: Type[MvpDataSource]
-    view_class: Type[MvpView]
-    presenter_class: Type[MvpPresenter]
+class MvpViewBuilder(Abstract, ViewBuilder):
+    data_source_class = abstract_class_property(Type[MvpDataSource])
+    view_class = abstract_class_property(Type[MvpView])
+    presenter_class = abstract_class_property(Type[MvpPresenter])
 
     def build_view(self, route_params: dict[str, str]) -> ft.View:
 
-        if not hasattr(self, "data_source"):
+        if (
+            not hasattr(self, "data_source")
+            or route_params != self.data_source.route_params
+        ):
             self.data_source = self.data_source_class(
                 app=self.app, route_params=route_params
             )
+
+        if self.data_source.route_params and not self.data_source.route_params_valid:
+            return PageNotFoundView()
 
         self.view_class.config.route = self.route
         self.view: ft.View = self.view_class()

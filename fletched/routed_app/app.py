@@ -60,8 +60,9 @@ class RoutedApp:
                     token["name"] for token in tokens if isinstance(token, dict)
                 ]
                 parameters = {
-                    parameter_name: getattr(template, parameter_name, "")
+                    parameter_name: getattr(template, parameter_name)
                     for parameter_name in parameter_names
+                    if getattr(template, parameter_name, None)
                 }
                 return view_builder.view_func(parameters)
         return PageNotFoundView()

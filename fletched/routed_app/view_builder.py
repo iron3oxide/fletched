@@ -30,7 +30,7 @@ class ViewBuilder(ABC):
         self.__view_func = func
 
     @abstractmethod
-    def build_view(self, route_parameters: dict[str, str]) -> ft.View:
+    def build_view(self, route_params: dict[str, str]) -> ft.View:
         ...
 
     def _set_app(self, app) -> None:
