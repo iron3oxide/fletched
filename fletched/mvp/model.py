@@ -4,6 +4,5 @@ from pydantic import BaseModel
 class MvpModel(BaseModel):
     class Config:
         allow_mutation = False
-        arbitrary_types_allowed = True
-
-    pass
+        smart_union = True
+        # arbitrary_types_allowed = True

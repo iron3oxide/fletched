@@ -37,7 +37,7 @@ class MvpDataSource(Abstract, Observable):
             modified_model = new_model
             for error in e.errors():
                 location = str(error["loc"][0])
-                modified_model[location] = ErrorMessage(error["msg"])
+                modified_model[location] = ErrorMessage(message=error["msg"])
 
             self.current_model = self.model_class(**modified_model)
             return False
