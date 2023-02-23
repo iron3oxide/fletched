@@ -1,0 +1,25 @@
+site_name: fletched
+repo_url: https://github.com/iron3oxide/fletched
+repo_name: iron3oxide/fletched
+theme:
+  icon:
+    repo: fontawesome/brands/github
+  name: material
+  logo: assets/logo.png
+  palette:
+    scheme: slate
+    primary: purple
+    accent: indigo
+  features:
+    - content.code.copy
+    - content.code.annotate
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
