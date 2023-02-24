@@ -13,6 +13,11 @@ theme:
   features:
     - content.code.copy
     - content.code.annotate
+nav:
+  - Getting Started: index.md
+  - MVP: mvp.md
+  - RoutedApp: routedapp.md
+  - Development - Contributing: CONTRIBUTING.md
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
