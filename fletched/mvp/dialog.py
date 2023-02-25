@@ -1,14 +1,17 @@
+from abc import abstractmethod
+from dataclasses import asdict, dataclass
 from typing import Any
 
 import flet as ft
 from abstractcp import Abstract, abstract_class_property
 from pydantic import BaseModel
 
+from fletched.mvp.protocols import MvpPresenterProtocol
 from fletched.mvp.renderer import MvpRenderer
 
 
-class DialogConfig(BaseModel):
-    ref: ft.Ref | None = None
+@dataclass
+class DialogConfig:
     disabled: bool | None = None
     visible: bool | None = None
     data: Any = None
@@ -16,18 +19,36 @@ class DialogConfig(BaseModel):
     modal: bool = False
     title: ft.Control | None = None
     title_padding: ft.PaddingValue = None
-    content: ft.Control | None = None
     content_padding: ft.PaddingValue = None
-    actions: list[ft.Control] | None = None
     actions_padding: ft.PaddingValue = None
 
-    class Config:
-        arbitrary_types_allowed = True
 
-
-class MvpDialog(Abstract, MvpRenderer, ft.AlertDialog):
+class MvpDialog(Abstract, ft.UserControl):
     ref_map = abstract_class_property(dict[str, ft.Ref])
     config = abstract_class_property(DialogConfig)
 
-    def __init__(self) -> None:
-        super().__init__(**self.config.dict())
+    def __init__(
+        self, presenter: MvpPresenterProtocol, ref: ft.Ref | None = None
+    ) -> None:
+        super().__init__(ref=ref)
+        self.dialog = ft.AlertDialog(**asdict(self.config))
+        self.presenter = presenter
+        self._renderer = MvpRenderer(self.ref_map)
+
+    def build(self) -> ft.AlertDialog:
+        self.dialog.content = self.get_content()
+        self.dialog.actions = self.get_actions()
+        return self.dialog
+
+    @abstractmethod
+    def get_content(self) -> ft.Control | None:
+        ...
+
+    @abstractmethod
+    def get_actions(self) -> list[ft.Control] | None:
+        ...
+
+    def render(self, model: BaseModel) -> None:
+        self._renderer.render(model)
+        if self.page:
+            self.update()
