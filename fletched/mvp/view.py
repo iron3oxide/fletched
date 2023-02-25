@@ -1,3 +1,5 @@
+from abc import abstractmethod
+from dataclasses import asdict, dataclass
 from typing import List, Optional, Type
 
 import flet as ft
@@ -6,11 +8,13 @@ from pydantic import BaseModel
 
 from fletched.mvp.datasource import MvpDataSource
 from fletched.mvp.presenter import MvpPresenter
+from fletched.mvp.protocols import MvpPresenterProtocol
 from fletched.mvp.renderer import MvpRenderer
 from fletched.routed_app import PageNotFoundView, ViewBuilder
 
 
-class ViewConfig(BaseModel):
+@dataclass
+class ViewConfig:
     route: Optional[str] = None
     controls: Optional[List[ft.Control]] = None
     appbar: Optional[ft.AppBar] = None
@@ -24,16 +28,23 @@ class ViewConfig(BaseModel):
     scroll: Optional[ft.ScrollMode] = None
     auto_scroll: Optional[bool] = None
 
-    class Config:
-        arbitrary_types_allowed = True
 
-
-class MvpView(Abstract, MvpRenderer, ft.View):
+class MvpView(Abstract, ft.View):
     ref_map = abstract_class_property(dict[str, ft.Ref])
     config = abstract_class_property(ViewConfig)
 
     def __init__(self) -> None:
-        super().__init__(**self.config.dict())
+        super().__init__(**asdict(self.config))
+        self._renderer = MvpRenderer(self.ref_map)
+
+    def render(self, model: BaseModel) -> None:
+        self._renderer.render(model)
+        if self.page:
+            self.page.update()
+
+    @abstractmethod
+    def build(self, presenter: MvpPresenterProtocol) -> None:
+        ...
 
 
 class MvpViewBuilder(Abstract, ViewBuilder):
