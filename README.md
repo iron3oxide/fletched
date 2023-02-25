@@ -1,4 +1,8 @@
 [![docs](https://github.com/iron3oxide/fletched/actions/workflows/docs.yml/badge.svg)](https://github.com/iron3oxide/fletched/actions/workflows/docs.yml)
+![PyPI](https://img.shields.io/pypi/v/fletched)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/fletched)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fletched)
+![code style](https://img.shields.io/badge/code%20style-black-000000.svg)
 
 ![logo](docs/assets/logo.png)
 
