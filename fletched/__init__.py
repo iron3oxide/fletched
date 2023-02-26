@@ -1,1 +1,1 @@
-from fletched import mvp, routed_app
+from fletched import controls, mvp, routed_app
