@@ -500,6 +500,37 @@ files = [
 ]
 
 [[package]]
+name = "polars"
+version = "0.16.8"
+description = "Blazingly fast DataFrame library"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "polars-0.16.8-cp37-abi3-macosx_10_7_x86_64.whl", hash = "sha256:424b2b6bca1a89c9b6c1ef4ddfa6f524d5d3a73cc562f7e580e3f3315583ee03"},
+    {file = "polars-0.16.8-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:25ce0b18fd9dae3512322e2db9601e51d2af8b2b59b9c49bc6adf967b79701cc"},
+    {file = "polars-0.16.8-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7a247c0ce59562ee412e684ea999ddc004213fe2acf30753340b662fb6609041"},
+    {file = "polars-0.16.8-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0f33951b5cf78c0c0aace868838ee573bc0422985d73be869a84867731a1c1f1"},
+    {file = "polars-0.16.8-cp37-abi3-win_amd64.whl", hash = "sha256:f85c7a3753af0f59ce18641446efdc2d3f85eaa9a9d232232061faafa02f87b9"},
+    {file = "polars-0.16.8.tar.gz", hash = "sha256:da306f9049afd11ad3c190cccf10fea4497cb413812c02bc774c60934aa679f4"},
+]
+
+[package.dependencies]
+typing_extensions = {version = ">=4.0.1", markers = "python_version < \"3.11\""}
+
+[package.extras]
+all = ["polars[connectorx,deltalake,fsspec,matplotlib,numpy,pandas,pyarrow,timezone,xlsx2csv]"]
+connectorx = ["connectorx"]
+deltalake = ["deltalake (>=0.6.2)"]
+fsspec = ["fsspec"]
+matplotlib = ["matplotlib"]
+numpy = ["numpy (>=1.16.0)"]
+pandas = ["pandas", "pyarrow (>=4.0.0)"]
+pyarrow = ["pyarrow (>=4.0.0)"]
+timezone = ["backports.zoneinfo", "tzdata"]
+xlsx2csv = ["xlsx2csv (>=0.8.0)"]
+
+[[package]]
 name = "pydantic"
 version = "1.10.5"
 description = "Data validation and settings management using python type hints"
@@ -1008,4 +1039,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "165fda9582468fcfeb9e12dcb1a8889ca54897fd6d778de85fecd30f2389aaea"
+content-hash = "32a2c7ffbdf3592778f19b0101679e50271c7fc34dba9b8bf13a39a7da9d9113"

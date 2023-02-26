@@ -2,9 +2,9 @@ site_name: fletched
 repo_url: https://github.com/iron3oxide/fletched
 repo_name: iron3oxide/fletched
 theme:
+  name: material
   icon:
     repo: fontawesome/brands/github
-  name: material
   logo: assets/logo.png
   palette:
     scheme: slate
@@ -14,9 +14,10 @@ theme:
     - content.code.copy
     - content.code.annotate
 nav:
-  - Getting Started: index.md
+  - Getting started: index.md
   - MVP: mvp.md
   - RoutedApp: routedapp.md
+  - Controls: controls.md
   - Development - Contributing: CONTRIBUTING.md
 markdown_extensions:
   - pymdownx.highlight:
