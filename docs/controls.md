@@ -15,7 +15,7 @@ We want the state of the DataTable to be external of it,
 so we need some kind of data structure outside the control
 to dictate what the DataTable displays.
 
-Lucky for us, python has immaculate support for table-like data structures!
+Lucky for us, python has immaculate support for tabular data structures!
 You have probably heard of pandas DataFrames,
 and they would have been an acceptable choice for our model.
 But since performance is very important here
@@ -38,7 +38,7 @@ to customize as much as possible from the outside.
 These parameters have been organized into two Config dataclasses:
 `DataTableConfig` for every parameter relating to `flet.DataTable`
 and `ModelDataTableConfig` for everything that comes on top and the ref,
-because that has to be passed to `flet.UserControl.__init__()`.
+because the latter has to be passed to `flet.UserControl.__init__()`.
 It also takes a `polars.DataFrame` instance as a parameter
 and makes that its initial model.
 By default, `ModelDataTable` creates a `flet.DataTable` instance internally
@@ -75,7 +75,7 @@ This makes it way easier to search the model
 without knowledge of its exact schema
 and may aid you when dealing with "truly" dynamic data as well.
 
-##### Examples
+#### Examples
 
 Static dataset that needs to be searchable:
 
