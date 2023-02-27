@@ -6,20 +6,19 @@
 
 Welcome to fletched!
 
-An opinionated framework on top of flet,
+An opinionated framework on top of Flet,
 designed to significantly reduce boilerplate code
 and aid in structuring a non-trivial project.
 
-If flet were an arrow,
+If Flet were an arrow,
 fletched would give it feathers,
 enabling you to aim and hit way further.
 
-For now, it offers two libraries/submodules:
-`mvp` and `routed_app`,
-which were originally separate projects.
-They are designed to work well in conjunction,
+For now, it offers three libraries/submodules:
+`mvp`, `routed_app` and `controls`.
+They are designed to work in conjunction,
 but should you only want to use one of them,
-that will work as well.
+that should work just as well.
 
 ## Installation
 
