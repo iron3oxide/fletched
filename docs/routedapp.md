@@ -107,6 +107,7 @@ the route_params dictionary will look like this:
 Note that both name and value will be strings,
 so you'll have to convert the value
 in case it's supposed to be of a different data type.
+
 The repath library allows you to specify a lot of constraints
 with the help of regular expressions,
 e.g. that a parameter is supposed to consist of 1-3 digits.
@@ -128,6 +129,7 @@ since it is easily possible to return a different view from there.
 If you use the `MvpViewBuilder`,
 this is done by overriding the `route_params_valid` property
 of the `MvpDataSource`, which is defined but not implemented by default.
+
 The `build_view()` method of the ViewBuilder
 will automatically create a new DataSource
 (and thus a new model/view state)
