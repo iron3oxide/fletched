@@ -71,6 +71,7 @@ and create a class variable named `ref_map`,
 containing a dictionary that maps the attribute names
 of your model to the respective ref
 of the control that should be tied to it.
+
 Any variable intended for the `flet.View` constructor will be accepted
 and passed on by the default `__init__()` method,
 so you don't need to define your own in most cases.
@@ -118,6 +119,7 @@ and so should its subclasses be.
 This helps to reduce the amount of boilerplate code
 (specifically `__init__()` methods) you have to write
 and keeps the general API of this library consistent.
+
 Since both the DataSource and the View are known to it
 (because the subclass fields override the fields of the same name in the superclass),
 `MvpPresenter` will automatically register a method as a callback with the DataSource
@@ -260,6 +262,7 @@ Ever heard of duck typing? It's based on the well-known adage:
 then it probably is a duck."
 In Python, it is also called structural subtyping and is implemented
 using something called Protocol classes.
+
 This means that a class that conforms to the structure
 defined by such a Protocol class can be considered a subtype of said class
 without actually inheriting from it.
@@ -272,6 +275,7 @@ the View needs an instance of the Presenter
 in order to call its intent handlers
 and the Presenter needs an instance of the View
 in order to call its `render()` and `build()` methods.
+
 We therefore define a Protocol class for each.
 They only contain the minimal interface the other needs to know about,
 which is the intent handlers in case of the Presenter

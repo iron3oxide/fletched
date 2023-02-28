@@ -3,12 +3,14 @@
 If we want the state of our view to be encapsulated in a model,
 the DataTable control (as flet provides it right now) constitutes a challenge
 if our data is somewhat dynamic.
+
 It is not easily possible to change the state of a DataTable
 as that is encapsulated in possibly thousands of DataCells
 that are only accessible via the DataRow they belong to.
 Even creating a DataTable is somewhat tedious because of this,
 although e.g. [simpledt](https://github.com/StanMathers/simple-datatable)
 can mitigate that.
+
 But even if it were way more ergonomic,
 our initial problem persists:
 We want the state of the DataTable to be external of it,
@@ -22,6 +24,7 @@ But since performance is very important here
 and they are just as ergonomic,
 [polars](https://pola-rs.github.io/polars-book/user-guide/introduction.html)
 is the DataFrame library we will use.
+
 It allows you to easily create DataFrames
 from JSON, Excel, CSV or even SQL statements
 (paired with a connection string of course).
@@ -39,6 +42,7 @@ These parameters have been organized into two Config dataclasses:
 `DataTableConfig` for every parameter relating to `flet.DataTable`
 and `ModelDataTableConfig` for everything that comes on top and the ref,
 because the latter has to be passed to `flet.UserControl.__init__()`.
+
 It also takes a `polars.DataFrame` instance as a parameter
 and makes that its initial model.
 By default, `ModelDataTable` creates a `flet.DataTable` instance internally
