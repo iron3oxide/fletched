@@ -16,6 +16,7 @@ flet = "^0.4.0"
 pydantic = "^1.10.5"
 abstractcp = "^0.9.9"
 polars = "^0.16.8"
+typing-extensions = "^4.5.0"
 
 [tool.poetry.group.dev.dependencies]
 mkdocs-material = "^9.0.13"
