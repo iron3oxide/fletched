@@ -40,7 +40,8 @@ class ViewBuilder(ABC):
         return ft.View(
             controls=[
                 ft.TextButton(
-                    text="You are not authorized to access this. Click this button to go to the login page.",
+                    text="""You are not authorized to access this.
+                    Click this button to go to the login page.""",
                     on_click=lambda e: self.page.go(self.unauthorized_return_route),
                 ),
             ],
