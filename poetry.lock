@@ -501,22 +501,19 @@ files = [
 
 [[package]]
 name = "polars"
-version = "0.17.10"
+version = "0.17.15"
 description = "Blazingly fast DataFrame library"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "polars-0.17.10-cp37-abi3-macosx_10_7_x86_64.whl", hash = "sha256:d6e4407dbe6282a79cf2271fed5b8318dfd991fc28dd487d24dab560fb4a0932"},
-    {file = "polars-0.17.10-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:bba2402492403ec556c1138623560dc0352ed22e5393617d0cc5f3c51363fc03"},
-    {file = "polars-0.17.10-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3a2118798719b8302bff68a0595d97e3b502faa120da79704722d2e8496f3dc5"},
-    {file = "polars-0.17.10-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:513e60c0d8c91004f6b325c9d40a96eefefc35fcc45126fa625345b04c1c3731"},
-    {file = "polars-0.17.10-cp37-abi3-win_amd64.whl", hash = "sha256:45db5fc9d99a7b415b6022caf0218a8565586fb33896b8a3b1c5e1df276e209c"},
-    {file = "polars-0.17.10.tar.gz", hash = "sha256:00a85ac9bdb4aa1dde9e7d31845a16aad2ef939ad411086cfa213ed65a41cbe2"},
+    {file = "polars-0.17.15-cp37-abi3-macosx_10_7_x86_64.whl", hash = "sha256:e14f31799e73cd6aa7a5f28b7acc40fc0b70eb6f8554f8e9246bf7afc620a929"},
+    {file = "polars-0.17.15-cp37-abi3-macosx_11_0_arm64.whl", hash = "sha256:9ecec1476764d615a0def5a35421e4a8f0f43dbf365cda7f95d79bb29d80da34"},
+    {file = "polars-0.17.15-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:0ce049ed923ff2a8902f8925bde0e10722e7a9747133b7d0856feb86000543bd"},
+    {file = "polars-0.17.15-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2f3a723ee318f8f7e7330df82bb27c9efd3c345d3ecd03307389e4e1564f4df6"},
+    {file = "polars-0.17.15-cp37-abi3-win_amd64.whl", hash = "sha256:112300a41b97291486edb604945275f7e5238ec1335f164f028e476c0401fca4"},
+    {file = "polars-0.17.15.tar.gz", hash = "sha256:78a1d520279c0ade91712d19c530d7933e07885d87f09c0cd38daac6260162bf"},
 ]
-
-[package.dependencies]
-typing_extensions = {version = ">=4.0.1", markers = "python_version < \"3.11\""}
 
 [package.extras]
 all = ["polars[connectorx,deltalake,fsspec,matplotlib,numpy,pandas,pyarrow,sqlalchemy,timezone,xlsx2csv,xlsxwriter]"]
